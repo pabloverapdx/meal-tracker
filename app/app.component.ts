@@ -1,4 +1,20 @@
-import { Component } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core';
+
+// *************************************************************************************************************** //
+                                        // Grandchild //
+
+@Component({
+  selector: 'meal-display', // display  keg model
+  inputs: ['meal'],
+  template: `
+  <h3>{{ meal.foodName }}</h3>
+  `
+  // this component above was added 3rd after parent and child
+})
+
+export class mealComponent {
+  public meal: Meal;
+}
 
 // **************************************************************************************************************** //
                                         // CHILD COMPONENT ///
@@ -6,20 +22,27 @@ import { Component } from 'angular2/core';
 @Component({
   selector: 'meal-list',
   inputs: ['mealList'],
+  outputs: ['onMealSelect'],
+  directives: [mealComponent],
   template: `
-  <h3 *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"> {{currentMeal.foodName}}</h3>
+  <meal-display *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"
+  [class.selected]="currentMeal === selectedMeal"> {{currentMeal.foodName}}</meal-display>
   `
-  // You need the word OF in currentMeal of mealList //
-  // *ngFor is a directive //
 })
 
 export class mealListComponent {
   public mealList: Meal[];
-  mealClicked(clickedMeal: Meal): void{ // click event for child
-    console.log(clickedMeal);
+  public onMealSelect: EventEmitter<Meal>;
+  public selectedMeal: Meal;
+  constructor() {
+    this.onMealSelect = new EventEmitter();
+  }
+  mealClicked(clickedMeal: Meal): void { // click event for child
+    console.log('child', 'clickedMeal');
+    this.selectedMeal = clickedMeal; // this line was added to select kegs and change their font color //
+    this.onMealSelect.emit(clickedMeal);
   }
 }
-
 // *************************************************************************************************************** //
                                       // PARENT COMPONENT ///
 
@@ -31,7 +54,8 @@ export class mealListComponent {
   template: `
    <div class="container">
    <h1> Track your Meals </h1>
-   <meal-list [mealList]="meals"></meal-list>
+   <meal-list [mealList]="meals" (onMealSelect)="mealWasSelected($event)"></meal-list>
+   </div>
   `
 })
 
@@ -39,10 +63,10 @@ export class AppComponent { // parent class definition
   public meals: Meal[];
   constructor() {
     this.meals = [
-    new Meal("Pizza", 0),  // Add more meals and meals details, calories, etc //
-    new Meal("Hamburger", 1),
-    new Meal("Lasagna", 2),
-    new Meal("Cereal", 3),
+    new Meal("Pizza", "Mushrooms and olives", 500, 0),  // Add more meals and meals details, calories, etc //
+    new Meal("Hamburger", "Extra cheese and pickles", 600, 1),
+    new Meal("Lasagna", "Parmesan cheese and olives", 400, 2),
+    new Meal("Cereal", "Whole milk and corn flakes", 300, 3),
     ];
   }
   mealWasSelected(clickedMeal: Meal): void{ // This is a built in click event //
@@ -52,7 +76,7 @@ export class AppComponent { // parent class definition
 
 export class Meal {
   public done: boolean = false;
-  constructor(public foodName: string, public id: number) {
+  constructor(public name: string, public info: string, public calories: number, public id: number){
 
   }
 }
