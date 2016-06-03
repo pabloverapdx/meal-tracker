@@ -9,7 +9,7 @@ import { Component } from 'angular2/core';
   template: `
   <h3 *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"> {{currentMeal.foodName}}</h3>
   `
-  // You need the word OF in currentKeg of kegList //
+  // You need the word OF in currentMeal of mealList //
   // *ngFor is a directive //
 })
 
