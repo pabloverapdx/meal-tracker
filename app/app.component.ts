@@ -1,48 +1,13 @@
 import { Component, EventEmitter } from 'angular2/core';
+import { mealListComponent } from './meal-list.component';
+import { Meal } from './meal.model';
 
 // *************************************************************************************************************** //
                                         // Grandchild //
 
-@Component({
-  selector: 'meal-display', // display  keg model
-  inputs: ['meal'],
-  template: `
-  <h3>{{ meal.foodName }}</h3>
-  `
-  // this component above was added 3rd after parent and child
-})
-
-export class mealComponent {
-  public meal: Meal;
-}
-
 // **************************************************************************************************************** //
                                         // CHILD COMPONENT ///
 
-@Component({
-  selector: 'meal-list',
-  inputs: ['mealList'],
-  outputs: ['onMealSelect'],
-  directives: [mealComponent],
-  template: `
-  <meal-display *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"
-  [class.selected]="currentMeal === selectedMeal"> {{currentMeal.foodName}}</meal-display>
-  `
-})
-
-export class mealListComponent {
-  public mealList: Meal[];
-  public onMealSelect: EventEmitter<Meal>;
-  public selectedMeal: Meal;
-  constructor() {
-    this.onMealSelect = new EventEmitter();
-  }
-  mealClicked(clickedMeal: Meal): void { // click event for child
-    console.log('child', 'clickedMeal');
-    this.selectedMeal = clickedMeal; // this line was added to select kegs and change their font color //
-    this.onMealSelect.emit(clickedMeal);
-  }
-}
 // *************************************************************************************************************** //
                                       // PARENT COMPONENT ///
 
@@ -74,9 +39,4 @@ export class AppComponent { // parent class definition
   }
 }
 
-export class Meal {
-  public done: boolean = false;
-  constructor(public name: string, public info: string, public calories: number, public id: number){
-
-  }
-}
+// The info here was the meal.model.ts this info is now in that file. Parameters must match.
