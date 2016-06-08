@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from 'angular2/core';
-import { mealComponent } from './meal.component';
+import { MealComponent } from './meal.component';
 import { Meal } from './meal.model';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
 
@@ -9,11 +9,13 @@ import { EditMealDetailsComponent } from './edit-meal-details.component';
   selector: 'meal-list',
   inputs: ['mealList'],
   outputs: ['onMealSelect'],
-  directives: [mealComponent, EditMealDetailsComponent],
+  directives: [MealComponent, EditMealDetailsComponent],
   template: `
   <meal-display *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"
   [class.selected]="currentMeal === selectedMeal" [meal]="currentMeal"> </meal-display>
-  <edit-meal-details *ngIf="selectedMeal" [meal]="selectedMeal"></edit-meal-details>
+  <div *ngIf="selectedMeal">
+  <edit-meal-details  [meal]="selectedMeal"></edit-meal-details>
+  </div>
   `
   // === tells Angular to either add or remove class the class selected
   // You need the word OF in currentMeal of mealList //
@@ -22,7 +24,7 @@ import { EditMealDetailsComponent } from './edit-meal-details.component';
   // edit-meal details comes from the edit meal details component file
 })
 
-export class mealListComponent {
+export class MealListComponent {
   public mealList: Meal[];
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
@@ -30,7 +32,6 @@ export class mealListComponent {
     this.onMealSelect = new EventEmitter();
   }
   mealClicked(clickedMeal: Meal): void { // click event for child
-    console.log('child', 'clickedMeal');
     this.selectedMeal = clickedMeal; // this line was added to select meals and change their font color //
     this.onMealSelect.emit(clickedMeal);
   }

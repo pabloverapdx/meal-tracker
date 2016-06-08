@@ -9,11 +9,13 @@ import { Meal } from './meal.model';
   inputs: ['meal'],
   template: `
   <h3>{{ meal.foodName }}</h3>
+  <h3>{{meal.info}}</h3>
+  <h3>{{meal.calories}}</h3>
   `
 
 })
 
-export class mealComponent {
+export class MealComponent {
   public meal: Meal;
 }
 
