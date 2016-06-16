@@ -3,16 +3,6 @@ import { MealListComponent } from './meal-list.component';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
 import { Meal } from './meal.model';
 
-// *************************************************************************************************************** //
-                                        // Grandchild //
-
-// **************************************************************************************************************** //
-                                        // CHILD COMPONENT ///
-
-// *************************************************************************************************************** //
-                                      // PARENT COMPONENT ///
-
-// Make this component first //
 
 @Component({ // parent component
   selector: 'my-app',

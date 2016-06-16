@@ -2,6 +2,7 @@ import { Component, EventEmitter } from 'angular2/core';
 import { MealComponent } from './meal.component';
 import { Meal } from './meal.model';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
+import { NewMealComponent } from './new-meal.component';
 
 // this is the child now //
 
@@ -9,13 +10,14 @@ import { EditMealDetailsComponent } from './edit-meal-details.component';
   selector: 'meal-list',
   inputs: ['mealList'],
   outputs: ['onMealSelect'],
-  directives: [MealComponent, EditMealDetailsComponent],
+  directives: [MealComponent, EditMealDetailsComponent, NewMealComponent],
   template: `
   <meal-display *ngFor="#currentMeal of mealList"(click)="mealClicked(currentMeal)"
   [class.selected]="currentMeal === selectedMeal" [meal]="currentMeal"> </meal-display>
   <div *ngIf="selectedMeal">
   <edit-meal-details  [meal]="selectedMeal"></edit-meal-details>
   </div>
+  <new-meal></new-meal>
   `
   // === tells Angular to either add or remove class the class selected
   // You need the word OF in currentMeal of mealList //
