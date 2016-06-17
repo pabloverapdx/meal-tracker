@@ -17,13 +17,11 @@ import { NewMealComponent } from './new-meal.component';
   <div *ngIf="selectedMeal">
   <edit-meal-details  [meal]="selectedMeal"></edit-meal-details>
   </div>
-  <new-meal></new-meal>
+  <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
+  <div *ngIf="selectedMeal">
+  <edit-meal-details [meal]="selectedMeal"> </edit-meal-details>
+  </div>
   `
-  // === tells Angular to either add or remove class the class selected
-  // You need the word OF in currentMeal of mealList //
-  // *ngFor is a directive //
-  // this component above went from <h3> to <meal-display> because it is grabbing it from the Grandchild //
-  // edit-meal details comes from the edit meal details component file
 })
 
 export class MealListComponent {
@@ -36,5 +34,8 @@ export class MealListComponent {
   mealClicked(clickedMeal: Meal): void { // click event for child
     this.selectedMeal = clickedMeal; // this line was added to select meals and change their font color //
     this.onMealSelect.emit(clickedMeal);
+  }
+  createMeal(newMeal: Meal): void {
+    this.mealList.push(newMeal);
   }
 }

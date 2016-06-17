@@ -1,4 +1,5 @@
 import { Component, EventEmitter } from 'angular2/core';
+import { EditMealDetailsComponent } from './edit-meal-details.component';
 import { Meal } from './meal.model';
 
 @Component({
@@ -7,10 +8,10 @@ import { Meal } from './meal.model';
   template: `
   <div class="meal-form">
   <h3>Create Meal:</h3>
-  <input placeholder="food name" class="col-sm-4 input-lg" #foodName>
-  <input placeholder="food details" class="col-sm-4 input-lg" #foodDetails>
-  <input placeholder="calories" class="col-sm-4 input-lg" #calories>
-  <button (click)="addMeal(foodName, foodDetails, calories)">Add</button>
+  <input placeholder="food name" class="col-sm-4 input-lg" #newName>
+  <input placeholder="food details" class="col-sm-4 input-lg" #newDetails>
+  <input placeholder="calories" class="col-sm-4 input-lg" #newCalories>
+  <button (click)="createMeal(newName, newDetails, newCalories)">Add New Meal</button>
 </div>
   `
 })
@@ -19,10 +20,11 @@ export class NewMealComponent {
   constructor(){
     this.onSubmitNewMeal = new EventEmitter();
   }
-  addMeal(foodName, foodDetails, calories: HTMLInputElement){
-    console.log(foodName.value, foodDetails.value, calories.value);
-    foodName.value = "";
-    foodDetails.value = "";
-    calories.value = "";
+  createMeal(newName: HTMLInputElement, newDetails: HTMLInputElement, newCalories: HTMLInputElement) {
+  var newMeal = new Meal(newName.value, newDetails.value, parseInt(newCalories.value));
+  this.onSubmitNewMeal.emit(newMeal);
+  newName.value="";
+  newDetails.value="";
+  newCalories.value="";
   }
 }
