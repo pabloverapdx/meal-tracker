@@ -10,9 +10,17 @@ import { Meal } from './meal.model';
   inputs: ['meal'],
   directives: [EditMealDetailsComponent],
   template: `
-  <h3>{{ meal.name }}</h3>
-  <h3>{{meal.info}}</h3>
-  <h3>{{meal.calories}}</h3>
+  <div class="meals-form">
+  <div class="col-sm-4">
+  <h5>{{ meal.name }}</h5>
+  </div>
+  <div class="col-sm-4">
+  <h5>{{meal.info}}</h5>
+  </div>
+  <div class="col-sm-4">
+  <h5>{{meal.calories}}</h5>
+  </div>
+  </div>
   `
 
 })

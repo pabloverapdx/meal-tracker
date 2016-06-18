@@ -19,10 +19,10 @@ export class AppComponent { // parent class definition
   public meals: Meal[];
   constructor() {
     this.meals = [
-    new Meal("Pizza", "Mushrooms and olives", 500),  // Add more meals and meals details, calories, etc //
-    new Meal("Hamburger", "Extra cheese and pickles", 600),
-    new Meal("Lasagna", "Parmesan cheese and olives", 400),
-    new Meal("Cereal", "Whole milk and corn flakes", 300)
+    new Meal("Pizza", "extra cheese and a coke", 500),  // Add more meals and meals details, calories, etc //
+    new Meal("Hamburger", "extra cheese and a pepsi", 600),
+    new Meal("Salad", "olive oil and no dressing", 250),
+    new Meal("Cereal", "fat free milk and strawberies", 300)
     ];
   }
   mealWasSelected(clickedMeal: Meal): void{ // This is a built in click event //

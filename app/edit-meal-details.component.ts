@@ -9,9 +9,9 @@ import { NewMealComponent } from './new-meal.component';
   template: `
     <div class="meal-form">
     <h3>Edit Meal Name:</h3>
-    <input [(ngModel)]="meal.name" class="col-sm-8 input-lg meal-form"/>
-    <input [(ngModel)]="meal.info" class="col-sm-8 input-lg meal-form"/>
-    <input [(ngModel)]="meal.calories" class="col-sm-8 input-lg meal-form"/>
+    <input [(ngModel)]="meal.name" class="col-sm-4 input-lg meal-form"/>
+    <input [(ngModel)]="meal.info" class="col-sm-4 input-lg meal-form"/>
+    <input [(ngModel)]="meal.calories" class="col-sm-4 input-lg meal-form"/>
     </div>
 
   `
