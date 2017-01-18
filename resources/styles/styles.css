@@ -26,3 +26,8 @@ button {
   background-color: #2A4179;
   color: #FFFFFF;
 }
+
+p {
+  margin-top: 10px;
+  font-size: 24px;
+}

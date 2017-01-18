@@ -12,13 +12,13 @@ import { Meal } from './meal.model';
   template: `
   <div class="meals-form">
   <div class="col-sm-4">
-  <h5>{{ meal.name }}</h5>
+  <p>{{ meal.name }}</p>
   </div>
   <div class="col-sm-4">
-  <h5>{{meal.info}}</h5>
+  <p>{{meal.info}}</p>
   </div>
   <div class="col-sm-4">
-  <h5>{{meal.calories}}</h5>
+  <p>{{meal.calories}}</p>
   </div>
   </div>
   `
