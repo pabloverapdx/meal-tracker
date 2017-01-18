@@ -1,5 +1,5 @@
 {
-  "name": "angular2-skeleton-app",
+  "name": "meal-tracker",
   "description": "",
   "main": "",
   "license": "ISC",
@@ -13,5 +13,8 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.6"
-  }
+  },
+  "authors": [
+    "Pablo Vera <pablovera.pdx@gmail.com>"
+  ]
 }

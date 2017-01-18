@@ -3,9 +3,26 @@
 }
 
 h1 {
- color: blue;
+ color: #2A4179;
 }
 
 h3 {
-  color: red;
+  color: #2A4179;
+}
+
+body {
+  background-image: url("../../resources/img/snow.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+}
+
+.meal-form {
+  float: left;
+}
+
+button {
+  height: 45px;
+  background-color: #2A4179;
+  color: #FFFFFF;
 }
